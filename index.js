@@ -28,7 +28,7 @@ try {
     path.join(folderPath, 'README.md'),
     path.join(folderPath, 'INSTRUCTIONS.md')
   );
-  fs.rmSync(path.join(folderPath, 'HISTORY.md'));
+  fs.truncateSync(path.join(folderPath, 'HISTORY.md'));
 
   console.log('✅ Success!');
 } catch (err) {
