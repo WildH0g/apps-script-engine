@@ -1,16 +1,28 @@
 {
-  "name": "gas-engine",
+  "name": "apps-script-engine",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "apps script engine",
+    "apps script",
+    "google apps script",
+    "clasp",
+    "boilerplate"
+  ],
   "author": "",
-  "license": "ISC",
-  "description": "",
+  "license": "MIT",
+  "description": "Creates boilerplate code for kick-ass Apps Script projects",
   "type": "module",
   "bin": {
     "apps-script-engine": "./index.js"
+  },
+  "private":"false",
+  "homepage": "https://github.com/WildH0g/apps-script-engine/blob/main/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:WildH0g/apps-script-engine.git"
   }
 }

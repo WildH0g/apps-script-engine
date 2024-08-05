@@ -11,7 +11,7 @@ const COMMANDS = {
   },
 };
 
-const dir = process.argv[2] || 'apps-script-engine';
+const dir = process.argv[2] || 'apps-script-project';
 try {
   console.log(`Initiating Apps Script Engine in directory "${dir}"`);
   execSync(COMMANDS.gitClone(dir));
@@ -24,8 +24,8 @@ try {
     () => {}
   );
 
-  fs.rm(path.join(folderPath, 'README.md'), () => {});
-  fs.rm(path.join(folderPath, 'HISTORY.md'), () => {});
+  fs.rmSync(path.join(folderPath, 'README.md'));
+  fs.rmSync(path.join(folderPath, 'HISTORY.md'));
 
   console.log(`✅ Success!`);
 } catch (err) {
