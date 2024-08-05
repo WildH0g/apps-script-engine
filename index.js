@@ -24,10 +24,13 @@ try {
     () => {}
   );
 
-  fs.rmSync(path.join(folderPath, 'README.md'));
+  fs.renameSync(
+    path.join(folderPath, 'README.md'),
+    path.join(folderPath, 'INSTRUCTIONS.md')
+  );
   fs.rmSync(path.join(folderPath, 'HISTORY.md'));
 
-  console.log(`✅ Success!`);
+  console.log('✅ Success!');
 } catch (err) {
-  console.error('❌ Something went wrong: ${err}');
+  console.error(`❌ Something went wrong: ${err}`);
 }
