@@ -17,12 +17,11 @@
   "description": "Creates boilerplate code for kick-ass Apps Script projects",
   "type": "module",
   "bin": {
-    "apps-script-engine": "./index.js"
+    "apps-script-engine": "index.js"
   },
-  "private":"false",
   "homepage": "https://github.com/WildH0g/apps-script-engine/blob/main/index.js",
   "repository": {
     "type": "git",
-    "url": "git@github.com:WildH0g/apps-script-engine.git"
+    "url": "git+ssh://git@github.com/WildH0g/apps-script-engine.git"
   }
 }
