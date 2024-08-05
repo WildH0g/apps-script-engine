@@ -26,12 +26,13 @@ npm t
 
 👤 **Dmitry Kostyuk**
 
-* Website: https://wurkspaces.dev
-* LinkedIn: [@dmitry.kostyuk](https://linkedin.com/in/dmitry.kostyuk)
+- Website: https://wurkspaces.dev
+- LinkedIn: [@dmitry.kostyuk](https://linkedin.com/in/dmitry.kostyuk)
 
 ## Show your support
 
 Give a ⭐️ if this project helped you!
 
-***
+---
+
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
