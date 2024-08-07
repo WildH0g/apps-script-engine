@@ -26,16 +26,7 @@ If you find an Issue that addresses the problem you're having, please add your o
 
 ## Check List
 
-0. Make sure that code you merge is fully covered by unit tests, otherwise your pull request will not be merged. I strongly suggest using TDD.
-1. Make sure to set up git hooks on your machine by running `npm run install:husky` be
-2. Ensure any install or build dependencies are removed before the end of the layer when doing a build.
-3. Update the README.md with details of changes to the interface, this includes new environment variables, exposed ports, useful file locations and container parameters.
-4. Increase the version numbers in any examples files and the README.md to the new version that this Pull Request would represent. The versioning scheme we use is [SemVer](http://semver.org/).
-5. Make sure your code is clean, readable, linted and prettified. 
-6. Remember to add JSDoc comments. 
-7. Every function must reside in its own file. 
-8. As a general guideline, no function should be longer than 40 lines; shorter is better.
+1. Update the README.md with details of changes to the interface, this includes new environment variables, exposed ports, useful file locations and container parameters.
+2. Increase the version numbers in any examples files and the README.md to the new version that this Pull Request would represent. The versioning scheme we use is [SemVer](http://semver.org/).
+3. Make sure your code is clean, readable, linted and prettified. 
 
-## Understanding the Project Architecture
-
-You may want to read my [blog post series on Medium](https://medium.com/@dmitry-kostyuk/ever-felt-like-youre-bringing-a-knife-to-a-gunfight-a39042d9793d) for a deeper understanding of the project architecture.
