@@ -11,7 +11,14 @@ const COMMANDS = {
   },
   gitInit(dir = '.') {
     console.log(`⏳ Initiating git repository in ${dir}`);
-    return `cd ${dir} && git init && git add . && git commit -m "Install Apps Script Engine template"`;
+    const commands = [
+      `cd ${dir}`,
+      'git init',
+      'git add .',
+      'git commit -m "Install Apps Script Engine template"',
+      'npm i',
+    ];
+    return commands.join(' && ');
   },
 };
 
