@@ -1,16 +1,25 @@
 {
   "name": "apps-script-engine",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint .",
+    "lint:fix": "npm run lint -- --fix",
+    "prettier": "prettier *.js --check",
+    "prettier:fix": "npm run prettier -- --write",
+    "format": "npm run prettier:fix && npm run lint:fix",
+    "push:publish": "git push origin main && npm publish",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky"
   },
   "keywords": [
     "apps script engine",
+    "apps-script-engine",
     "apps script",
     "google apps script",
     "clasp",
-    "boilerplate"
+    "boilerplate",
+    "template"
   ],
   "author": "",
   "license": "MIT",
@@ -23,5 +32,14 @@
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/WildH0g/apps-script-engine.git"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.1.0",
+    "@eslint/js": "^9.8.0",
+    "eslint": "^9.8.0",
+    "eslint-config-prettier": "^9.1.0",
+    "globals": "^15.9.0",
+    "husky": "^9.1.4",
+    "prettier": "^3.3.3"
   }
 }
