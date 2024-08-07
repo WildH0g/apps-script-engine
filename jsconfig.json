@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "module": "NodeNext",
+    "target": "ES6",
+    "checkJs": true,
+    "types": [],
+    "moduleResolution": "NodeNext"
+  },
+  "include": ["**/*.js", "eslint.config.cjs"],
+  "exclude": ["node_modules", "dist"]
+}
