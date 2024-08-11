@@ -7,6 +7,7 @@ const REPO = 'git@github.com:WildH0g/apps-script-engine-template.git';
 
 const COMMANDS = {
   gitClone(dir = '') {
+    console.log(`⏳ Initiating Apps Script Engine in directory "${dir}"`);
     return `git clone ${REPO} ${dir}`;
   },
   gitInit(dir = '.') {
@@ -17,6 +18,7 @@ const COMMANDS = {
       'git add .',
       'git commit -m "Install Apps Script Engine template"',
       'npm i',
+      'npm run install:husky',
     ];
     return commands.join(' && ');
   },
@@ -24,7 +26,6 @@ const COMMANDS = {
 
 const dir = process.argv[2] || 'apps-script-project';
 try {
-  console.log(`⏳ Initiating Apps Script Engine in directory "${dir}"`);
   execSync(COMMANDS.gitClone(dir));
 
   const folderPath = path.join(process.cwd(), dir);
