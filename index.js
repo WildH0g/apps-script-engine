@@ -3,7 +3,7 @@
 import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
-const REPO = 'git@github.com:WildH0g/apps-script-engine-template.git';
+const REPO = 'https://github.com/WildH0g/apps-script-engine-template.git';
 
 const COMMANDS = {
   gitClone(dir = '') {
@@ -15,10 +15,10 @@ const COMMANDS = {
     const commands = [
       `cd ${dir}`,
       'git init',
-      'git add .',
-      'git commit -m "Install Apps Script Engine template"',
       'npm i',
       'npm run install:husky',
+      'git add .',
+      'git commit -m "Install Apps Script Engine template"',
     ];
     return commands.join(' && ');
   },
