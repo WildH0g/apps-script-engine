@@ -3,17 +3,28 @@
 import { execSync } from 'child_process';
 import fs from 'fs';
 import path from 'path';
+import dotenv from 'dotenv';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+dotenv.config({ path: path.join(__dirname, '.env') });
+
 const REPO = 'https://github.com/WildH0g/apps-script-engine-template.git';
 
 const COMMANDS = {
   gitClone(dir = '') {
     console.log(`⏳ Initiating Apps Script Engine in directory "${dir}"`);
-    return `git clone ${REPO} ${dir}`;
+    const localDevDir = process.env.DEV_MODE_DIR;
+    if (!localDevDir) return `git clone ${REPO} "${dir}"`;
+    console.log(`Copying from local DEV directory: ${localDevDir}`);
+    return `cp -r "${localDevDir}/." "${dir}"`;
   },
   gitInit(dir = '.') {
     console.log(`⏳ Initiating git repository in ${dir}`);
     const commands = [
-      `cd ${dir}`,
+      `cd "${dir}"`,
       'git init',
       'npm i',
       'npm run install:husky',
