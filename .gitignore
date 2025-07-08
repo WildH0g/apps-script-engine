@@ -24,3 +24,4 @@ sandbox
 *.njsproj
 *.sln
 *.sw?
+.env
