@@ -17,7 +17,8 @@ const COMMANDS = {
   gitClone(dir = '') {
     console.log(`⏳ Initiating Apps Script Engine in directory "${dir}"`);
     const localDevDir = process.env.DEV_MODE_DIR;
-    if (!localDevDir) return `git clone ${REPO} "${dir}"`;
+    if (!localDevDir || !fs.existsSync(localDevDir))
+      return `git clone ${REPO} "${dir}"`;
     console.log(`Copying from local DEV directory: ${localDevDir}`);
     return `cp -r "${localDevDir}/." "${dir}"`;
   },
