@@ -7,6 +7,7 @@ import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 import { parseFlags } from './handlers/parse-flags.js';
 import { applyScripts, installDeps } from './handlers/apply-config.js';
+import { copyNewFiles } from './handlers/copy-new-files.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -64,7 +65,7 @@ for (const flag of flags) {
     const configScripts = path.join(configPath, 'config.js');
 
     console.log('Copying language files...');
-    fs.cpSync(configFiles, folderPath, { recursive: true });
+    copyNewFiles(configFiles, folderPath);
 
     console.log('Applying NPM scripts...');
     const { npmScripts, deps } = await import(configScripts);

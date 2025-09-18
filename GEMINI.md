@@ -1,6 +1,6 @@
 # Project Overview
 
-This project is a Node.js Command Line Interface (CLI) tool named "Apps Script Engine". Its primary purpose is to streamline the setup of Google Apps Script projects by generating boilerplate code from a predefined template repository (`https://github.com/WildH0g/apps-script-engine-template.git`). It leverages `git` for cloning the template and `npm` for managing dependencies and setting up development tools like Husky. Additionally, it copies language-specific configuration files and dynamically applies npm scripts from these configurations.
+This project is a Node.js Command Line Interface (CLI) tool named "Apps Script Engine". Its primary purpose is to streamline the setup of Google Apps Script projects by generating boilerplate code from a predefined template repository (`https://github.com/WildH0g/apps-script-engine-template.git`). It leverages `git` for cloning the template and `npm` for managing dependencies and setting up development tools like Husky. Additionally, it intelligently copies language-specific configuration files, including nested directories like 'src/client/' and 'src/server/', merging them with existing project files without overwriting, and dynamically applies npm scripts from these configurations.
 
 The CLI allows users to quickly initialize a new Apps Script project in a specified directory, removing the `.git` history from the cloned template and renaming the template's `README.md` to `INSTRUCTIONS.md`.
 
@@ -32,7 +32,7 @@ The following `npm` scripts are available for development on the `apps-script-en
 
 ### Developer Mode
 
-For local development and testing of the `apps-script-engine` CLI with a local template repository, you can utilize the `DEV_MODE_DIR` environment variable. When `DEV_MODE_DIR` is set to an absolute path of a local directory, the CLI will copy the template files from this specified local directory instead of performing a `git clone` from the remote `REPO` URL. This is particularly useful for iterating on template changes without needing to push them to a remote Git repository.
+For local development and testing of the `apps-script-engine` CLI with a local template repository, you can utilize the `DEV_MODE_DIR` environment variable. When `DEV_MODE_DIR` is set to an absolute path of a local directory, the CLI will intelligently copy the template files from this specified local directory, merging them with existing files without overwriting, instead of performing a `git clone` from the remote `REPO` URL. This is particularly useful for iterating on template changes without needing to push them to a remote Git repository.
 
 To enable developer mode, create a `.env` file in the root of this CLI project (e.g., `/home/wildhog/Documents/1. PROJECTS 📅/my-tools/gas-engine/cli/.env`) and add the `DEV_MODE_DIR` variable, pointing it to your local template directory:
 
@@ -49,3 +49,7 @@ Ensure the path is absolute and correctly points to your local template reposito
 - **Git Hooks:** Husky is integrated to manage Git hooks, likely for running linting and formatting checks before commits.
 - **Dependencies:** `dotenv` is used for environment variable management.
 - **Project Structure:** The main logic resides in `index.js`.
+
+# GEMINI.md
+
+This `GEMINI.md` file serves as a dedicated context file for the Gemini CLI agent. It provides a comprehensive overview of the project, including its purpose, how to build and run it, development commands, and conventions. This file helps the agent understand the project's structure and requirements, enabling it to assist more effectively with tasks such as bug fixes, feature development, and code explanations.
