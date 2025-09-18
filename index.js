@@ -5,6 +5,8 @@ import fs from 'fs';
 import path from 'path';
 import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
+import { parseFlags } from './handlers/parse-flags.js';
+import { applyScripts, installDeps } from './handlers/apply-config.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -18,7 +20,7 @@ const COMMANDS = {
     console.log(`⏳ Initiating Apps Script Engine in directory "${dir}"`);
     const localDevDir = process.env.DEV_MODE_DIR;
     if (!localDevDir || !fs.existsSync(localDevDir))
-      return `git clone ${REPO} "${dir}"`;
+      return `git clone --depth 1 ${REPO} "${dir}"`;
     console.log(`Copying from local DEV directory: ${localDevDir}`);
     return `cp -r "${localDevDir}/." "${dir}"`;
   },
@@ -36,22 +38,50 @@ const COMMANDS = {
   },
 };
 
-const dir = process.argv[2] || 'apps-script-project';
-try {
-  execSync(COMMANDS.gitClone(dir));
-
-  const folderPath = path.join(process.cwd(), dir);
-
-  fs.rmSync(path.join(folderPath, '.git'), { recursive: true, force: true });
-
-  fs.renameSync(
-    path.join(folderPath, 'README.md'),
-    path.join(folderPath, 'INSTRUCTIONS.md')
-  );
-  fs.truncateSync(path.join(folderPath, 'HISTORY.md'));
-  execSync(COMMANDS.gitInit(folderPath));
-
-  console.log('✅ Success!');
-} catch (err) {
-  console.error(`❌ Something went wrong: ${err}`);
+const { dir, flags } = parseFlags(process.argv);
+let lang = 'javascript';
+for (const flag of flags) {
+  if ('ts' === flag.name && true === flag.value) lang = 'typescript';
 }
+
+(async () => {
+  try {
+    execSync(COMMANDS.gitClone(dir));
+
+    const folderPath = path.join(process.cwd(), dir);
+
+    fs.rmSync(path.join(folderPath, '.git'), { recursive: true, force: true });
+
+    fs.renameSync(
+      path.join(folderPath, 'README.md'),
+      path.join(folderPath, 'INSTRUCTIONS.md')
+    );
+    fs.truncateSync(path.join(folderPath, 'HISTORY.md'));
+
+    console.log('Applying language config...');
+    const configPath = path.join(folderPath, `.config/${lang}`);
+    const configFiles = path.join(configPath, 'files/');
+    const configScripts = path.join(configPath, 'config.js');
+
+    console.log('Copying language files...');
+    fs.cpSync(configFiles, folderPath, { recursive: true });
+
+    console.log('Applying NPM scripts...');
+    const { npmScripts, deps } = await import(configScripts);
+    applyScripts(dir, npmScripts);
+
+    console.log('Installing dependencies...');
+    installDeps(dir, deps);
+
+    fs.rmSync(path.join(folderPath, '.config'), {
+      recursive: true,
+      force: true,
+    });
+
+    execSync(COMMANDS.gitInit(folderPath));
+
+    console.log('✅ Success!');
+  } catch (err) {
+    console.error(`❌ Something went wrong: ${err}`);
+  }
+})();

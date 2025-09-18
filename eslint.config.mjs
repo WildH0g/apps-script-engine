@@ -15,6 +15,7 @@ const compat = new FlatCompat({
 export default [
   ...compat.extends('eslint:recommended', 'prettier'),
   {
+    ignores: ['dist/**'],
     plugins: {},
 
     languageOptions: {

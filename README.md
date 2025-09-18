@@ -6,7 +6,7 @@
   </a>
 </p>
 
-> Creates boilerplate code for kick-ass Apps Script projects, helping developers quickly set up and start building with Google Apps Script.
+> Creates boilerplate code for kick-ass Apps Script projects, helping developers quickly set up and start building with Google Apps Script. It now also copies configuration files and applies npm scripts based on the chosen language (JavaScript or TypeScript).
 
 ### 🏠 [Homepage](https://github.com/WildH0g/apps-script-engine)
 
@@ -56,6 +56,18 @@ npx apps-script-engine my-project-directory
 ```
 
 After running the command, the script will generate the necessary boilerplate files in the specified directory.
+
+## Developer Mode
+
+For local development of the `apps-script-engine` CLI, you can use the `DEV_MODE_DIR` environment variable. If `DEV_MODE_DIR` is set to a local path, the CLI will copy the template files from this local directory instead of cloning from the remote Git repository. This is useful for testing changes to the template without pushing them to GitHub.
+
+To use developer mode, create a `.env` file in the root of this CLI project and add:
+
+```
+DEV_MODE_DIR=/path/to/your/local/apps-script-engine-template
+```
+
+Replace `/path/to/your/local/apps-script-engine-template` with the absolute path to your local template repository.
 
 ## Author
 
